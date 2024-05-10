@@ -41,8 +41,7 @@ const list = (requestParam) => {
           compareData = {
             ...compareData,
             $or: [
-              { first_name: { $regex: regex } },
-              { last_name: { $regex: regex } }
+              { name: { $regex: regex } }
             ]
           }
         }
@@ -88,12 +87,12 @@ const list = (requestParam) => {
             $limit: sizePerPage,
           },
         ];
-        
+
         let resData = await query.joinWithAnd(
           dbConstants.dbSchema.roles,
           joinArr
         );
-        
+
 
         resolve(resData);
         return;
